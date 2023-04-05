@@ -9,6 +9,11 @@
         public string TelephoneFixe { get; set; } // numéro de téléphone fixe du salarié
         public string TelephonePortable { get; set; } // numéro de téléphone portable du salarié
         public string Email { get; set; } // adresse email du salarié
+
+        // Foreign keys
+        public int ServiceId { get; set; }
+        public int SiteId { get; set; }
+
         public Service Service { get; set; } // service associé au salarié
         public Site Site { get; set; } // site associé au salarié
     }
