@@ -81,6 +81,5 @@ namespace DotNetAnnuaireApi.Migrations
                 keyColumn: "Id",
                 keyValues: new object[] { 1, 2 });
         }
-
     }
 }

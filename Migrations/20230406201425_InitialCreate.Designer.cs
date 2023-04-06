@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DotNetAnnuaireApi.Migrations
 {
     [DbContext(typeof(AnnuaireContext))]
-    [Migration("20230405224631_DataSeeder")]
-    partial class DataSeeder
+    [Migration("20230406201425_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,23 @@ namespace DotNetAnnuaireApi.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("DotNetAnnuaireApi.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
 
             modelBuilder.Entity("DotNetAnnuaireApi.Models.Salarie", b =>
                 {
@@ -44,6 +61,9 @@ namespace DotNetAnnuaireApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("RoleId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("ServiceId")
                         .HasColumnType("integer");
 
@@ -59,6 +79,8 @@ namespace DotNetAnnuaireApi.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
 
                     b.HasIndex("ServiceId");
 
@@ -103,6 +125,12 @@ namespace DotNetAnnuaireApi.Migrations
 
             modelBuilder.Entity("DotNetAnnuaireApi.Models.Salarie", b =>
                 {
+                    b.HasOne("DotNetAnnuaireApi.Models.Role", "Role")
+                        .WithMany("Salaries")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DotNetAnnuaireApi.Models.Service", "Service")
                         .WithMany("Salaries")
                         .HasForeignKey("ServiceId")
@@ -110,17 +138,29 @@ namespace DotNetAnnuaireApi.Migrations
                         .IsRequired();
 
                     b.HasOne("DotNetAnnuaireApi.Models.Site", "Site")
-                        .WithMany()
+                        .WithMany("Salaries")
                         .HasForeignKey("SiteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Role");
 
                     b.Navigation("Service");
 
                     b.Navigation("Site");
                 });
 
+            modelBuilder.Entity("DotNetAnnuaireApi.Models.Role", b =>
+                {
+                    b.Navigation("Salaries");
+                });
+
             modelBuilder.Entity("DotNetAnnuaireApi.Models.Service", b =>
+                {
+                    b.Navigation("Salaries");
+                });
+
+            modelBuilder.Entity("DotNetAnnuaireApi.Models.Site", b =>
                 {
                     b.Navigation("Salaries");
                 });
