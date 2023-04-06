@@ -1,5 +1,6 @@
 ﻿using DotNetAnnuaireApi.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace DotNetAnnuaireApi.Services
 {
@@ -12,35 +13,36 @@ namespace DotNetAnnuaireApi.Services
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Service> GetAllServices()
+        public async Task<List<Service>> GetAllServicesAsync()
         {
-            return _dbContext.Services.Include(s => s.Salaries).ToList();
+            return await _dbContext.Services.ToListAsync();
         }
 
-        public Service GetServiceById(int id)
+        public async Task<Service> GetServiceByIdAsync(int id)
         {
-            return _dbContext.Services.Include(s => s.Salaries).FirstOrDefault(s => s.Id == id);
+            return await _dbContext.Services.FindAsync(id);
         }
 
-        public void AddService(Service service)
+        public async Task<Service> AddServiceAsync(Service service)
         {
             _dbContext.Services.Add(service);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
+            return service;
         }
 
-        public void UpdateService(Service service)
+        public async Task UpdateServiceAsync(Service service)
         {
             _dbContext.Services.Update(service);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void DeleteService(int id)
+        public async Task DeleteServiceAsync(int id)
         {
-            var service = _dbContext.Services.FirstOrDefault(s => s.Id == id);
+            var service = await _dbContext.Services.FindAsync(id);
             if (service != null)
             {
                 _dbContext.Services.Remove(service);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
             }
         }
     }

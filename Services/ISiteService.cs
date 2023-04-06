@@ -5,10 +5,10 @@
 
     public interface ISiteService
     {
-        IEnumerable<Site> GetAllSites();
-        Site GetSiteById(int id);
-        void AddSite(Site site);
-        void UpdateSite(Site site);
-        void DeleteSite(int id);
+        Task<List<Site>> GetAllSitesAsync();
+        Task<Site> GetSiteByIdAsync(int id);
+        Task<Site> AddSiteAsync(Site site);
+        Task UpdateSiteAsync(Site site);
+        Task DeleteSiteAsync(int id);
     }
 }

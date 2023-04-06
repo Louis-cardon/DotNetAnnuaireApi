@@ -5,11 +5,11 @@
 
     public interface IServiceService
     {
-        IEnumerable<Service> GetAllServices();
-        Service GetServiceById(int id);
-        void AddService(Service service);
-        void UpdateService(Service service);
-        void DeleteService(int id);
+        Task<List<Service>> GetAllServicesAsync();
+        Task<Service> GetServiceByIdAsync(int id);
+        Task<Service> AddServiceAsync(Service service);
+        Task UpdateServiceAsync(Service service);
+        Task DeleteServiceAsync(int id);
     }
 
 }

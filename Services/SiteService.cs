@@ -13,35 +13,36 @@ namespace DotNetAnnuaireApi.Services
                 _context = context;
             }
 
-            public IEnumerable<Site> GetAllSites()
+            public async Task<List<Site>> GetAllSitesAsync()
             {
-                return _context.Sites.Include(s => s.Salaries).ToList();
+                return await _context.Sites.ToListAsync();
             }
 
-            public Site GetSiteById(int id)
+            public async Task<Site> GetSiteByIdAsync(int id)
             {
-                return _context.Sites.Include(s => s.Salaries).FirstOrDefault(s => s.Id == id);
+                return await _context.Sites.FindAsync(id);
             }
 
-            public void AddSite(Site site)
+            public async Task<Site> AddSiteAsync(Site site)
             {
                 _context.Sites.Add(site);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
+                return site;
             }
 
-            public void UpdateSite(Site site)
+            public async Task UpdateSiteAsync(Site site)
             {
                 _context.Sites.Update(site);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
-            public void DeleteSite(int id)
+            public async Task DeleteSiteAsync(int id)
             {
-                var site = _context.Sites.FirstOrDefault(s => s.Id == id);
+                var site = await _context.Sites.FindAsync(id);
                 if (site != null)
                 {
                     _context.Sites.Remove(site);
-                    _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 }
             }
 
