@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json.Serialization;
 using DotNetAnnuaireApi.Models;
+using DotNetAnnuaireApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -14,6 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x =>
+    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 // Add DbContext
 builder.Services.AddDbContext<AnnuaireContext>(options =>
@@ -22,9 +25,11 @@ builder.Services.AddDbContext<AnnuaireContext>(options =>
 }
 );
 
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ISiteService, SiteService>();
 
 var app = builder.Build();
 
@@ -37,11 +42,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseRouting();
 
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 });
+
+app.UseAuthorization();
 
 app.Run();
