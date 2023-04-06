@@ -42,6 +42,11 @@
         [HttpPost]
         public ActionResult<Site> PostSite(Site site)
         {
+            if (site == null)
+            {
+                return BadRequest();
+            }
+
             _siteService.AddSite(site);
             return CreatedAtAction(nameof(GetSite), new { id = site.Id }, site);
         }
@@ -50,11 +55,17 @@
         [HttpPut("{id}")]
         public IActionResult PutSite(int id, Site site)
         {
-            if (id != site.Id)
+            if (site == null || id != site.Id)
             {
                 return BadRequest();
             }
 
+            var existingSite = _siteService.GetSiteById(id);
+
+            if (existingSite == null)
+            {
+                return NotFound();
+            }
             _siteService.UpdateSite(site);
             return NoContent();
         }
