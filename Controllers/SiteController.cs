@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
-    [Route("api/sites")]
+    [Route("api/[controller]")]
     public class SiteController : ControllerBase
     {
         private readonly ISiteService _siteService;
@@ -18,17 +18,17 @@
 
         // GET: api/sites
         [HttpGet]
-        public ActionResult<IEnumerable<Site>> GetSites()
+        public async Task<ActionResult<IEnumerable<Site>>> GetSites()
         {
-            var sites = _siteService.GetAllSites();
+            var sites = await _siteService.GetAllSitesAsync();
             return Ok(sites);
         }
 
         // GET: api/sites/5
         [HttpGet("{id}")]
-        public ActionResult<Site> GetSite(int id)
+        public async Task<ActionResult<Site>> GetSite(int id)
         {
-            var site = _siteService.GetSiteById(id);
+            var site = await _siteService.GetSiteByIdAsync(id);
 
             if (site == null)
             {
@@ -40,48 +40,48 @@
 
         // POST: api/sites
         [HttpPost]
-        public ActionResult<Site> PostSite(Site site)
+        public async Task<ActionResult<Site>> PostSite(Site site)
         {
             if (site == null)
             {
                 return BadRequest();
             }
 
-            _siteService.AddSite(site);
+            await _siteService.AddSiteAsync(site);
             return CreatedAtAction(nameof(GetSite), new { id = site.Id }, site);
         }
 
         // PUT: api/sites/5
         [HttpPut("{id}")]
-        public IActionResult PutSite(int id, Site site)
+        public async Task<IActionResult> PutSite(int id, Site site)
         {
             if (site == null || id != site.Id)
             {
                 return BadRequest();
             }
 
-            var existingSite = _siteService.GetSiteById(id);
+            var existingSite = await _siteService.GetSiteByIdAsync(id);
 
             if (existingSite == null)
             {
                 return NotFound();
             }
-            _siteService.UpdateSite(site);
+            await _siteService.UpdateSiteAsync(site);
             return NoContent();
         }
 
         // DELETE: api/sites/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteSite(int id)
+        public async Task<IActionResult> DeleteSite(int id)
         {
-            var site = _siteService.GetSiteById(id);
+            var site = await _siteService.GetSiteByIdAsync(id);
 
             if (site == null)
             {
                 return NotFound();
             }
 
-            _siteService.DeleteSite(id);
+            await _siteService.DeleteSiteAsync(id);
             return NoContent();
         }
     }

@@ -18,16 +18,16 @@
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<ActionResult<IEnumerable<Service>>>GetServices()
         {
-            var services = _serviceService.GetAllServices();
+            var services = await _serviceService.GetAllServicesAsync();
             return Ok(services);
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<ActionResult<Service>> GetService(int id)
         {
-            var service = _serviceService.GetServiceById(id);
+            var service = await _serviceService.GetServiceByIdAsync(id);
 
             if (service == null)
             {
@@ -38,49 +38,49 @@
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Service service)
+        public async Task<ActionResult<Service>> PostService([FromBody] Service service)
         {
             if (service == null)
             {
                 return BadRequest();
             }
 
-            _serviceService.AddService(service);
+            await _serviceService.AddServiceAsync(service);
 
-            return CreatedAtAction(nameof(Get), new { id = service.Id }, service);
+            return CreatedAtAction(nameof(GetService), new { id = service.Id }, service);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Service service)
+        public async Task<IActionResult> PutService(int id, [FromBody] Service service)
         {
             if (service == null || id != service.Id)
             {
                 return BadRequest();
             }
 
-            var existingService = _serviceService.GetServiceById(id);
+            var existingService = await _serviceService.GetServiceByIdAsync(id);
 
             if (existingService == null)
             {
                 return NotFound();
             }
 
-            _serviceService.UpdateService(service);
+            await _serviceService.UpdateServiceAsync(service);
 
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> DeleteService(int id)
         {
-            var service = _serviceService.GetServiceById(id);
+            var service = await _serviceService.GetServiceByIdAsync(id);
 
             if (service == null)
             {
                 return NotFound();
             }
 
-            _serviceService.DeleteService(id);
+            await _serviceService.DeleteServiceAsync(id);
 
             return NoContent();
         }
