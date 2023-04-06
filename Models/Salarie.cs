@@ -13,8 +13,10 @@
         // Foreign keys
         public int ServiceId { get; set; }
         public int SiteId { get; set; }
+        public int RoleId { get; set; }
 
         public Service Service { get; set; } // service associé au salarié
         public Site Site { get; set; } // site associé au salarié
+        public Role Role { get; set; } // rôle du salarié
     }
 }
