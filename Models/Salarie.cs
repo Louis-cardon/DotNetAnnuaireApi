@@ -1,8 +1,11 @@
-﻿namespace DotNetAnnuaireApi.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DotNetAnnuaireApi.Models
 {
     // Classe représentant un salarié
     public class Salarie
     {
+        [Key]
         public int Id { get; set; } // identifiant unique du salarié
         public string Nom { get; set; } // nom du salarié
         public string Prenom { get; set; } // prénom du salarié
