@@ -42,7 +42,7 @@ namespace DotNetAnnuaireApi.Services
                 if (site != null)
                 {
                     _context.Sites.Remove(site);
-                await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
                 }
             }
 

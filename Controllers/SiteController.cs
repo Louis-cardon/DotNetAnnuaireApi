@@ -40,7 +40,7 @@
 
         // POST: api/sites
         [HttpPost]
-        public async Task<ActionResult<Site>> PostSite(Site site)
+        public async Task<ActionResult<Site>> PostSite([FromBody] Site site)
         {
             if (site == null)
             {
@@ -53,7 +53,7 @@
 
         // PUT: api/sites/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSite(int id, Site site)
+        public async Task<IActionResult> PutSite(int id, [FromBody] Site site)
         {
             if (site == null || id != site.Id)
             {

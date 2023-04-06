@@ -32,6 +32,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ISiteService, SiteService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<ISalarieService, SalarieService>();
 
 var app = builder.Build();
 

@@ -35,7 +35,7 @@
         }
 
         [HttpPost]
-        public async Task<ActionResult<Role>> PostRole(Role role)
+        public async Task<ActionResult<Role>> PostRole([FromBody] Role role)
         {
             if (role == null)
             {
@@ -47,7 +47,7 @@
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRole(int id, Role role)
+        public async Task<IActionResult> PutRole(int id, [FromBody] Role role)
         {
             if (role == null || id != role.Id)
             {
