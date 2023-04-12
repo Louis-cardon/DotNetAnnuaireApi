@@ -12,6 +12,7 @@ namespace DotNetAnnuaireApi.Models
         public string TelephoneFixe { get; set; } // numéro de téléphone fixe du salarié
         public string TelephonePortable { get; set; } // numéro de téléphone portable du salarié
         public string Email { get; set; } // adresse email du salarié
+        public string MotDePasse { get; set; } // mot de passe du salarié
 
         // Foreign keys
         public int ServiceId { get; set; }
