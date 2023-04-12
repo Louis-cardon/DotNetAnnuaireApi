@@ -50,6 +50,10 @@ namespace DotNetAnnuaireApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("MotDePasse")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Nom")
                         .IsRequired()
                         .HasColumnType("text");

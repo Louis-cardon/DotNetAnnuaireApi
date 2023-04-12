@@ -41,16 +41,16 @@ namespace DotNetAnnuaireApi.Migrations
                     { 1, "Administrateur" },
                     { 2, "Visiteur" }
                 });
-
+            var motDePasseHash = BCrypt.Net.BCrypt.HashPassword("password");
             // Insertion des salariés
             migrationBuilder.InsertData(
                 table: "Salaries",
-                columns: new[] { "Id", "Nom", "Prenom", "TelephoneFixe", "TelephonePortable", "Email", "ServiceId", "SiteId", "RoleId" },
+                columns: new[] { "Id", "Nom", "Prenom", "TelephoneFixe", "TelephonePortable", "Email", "MotDePasse", "ServiceId", "SiteId", "RoleId" },
                 values: new object[,]
                 {
-                    { 1, "Dupont", "Jean", "0102030405", "0607080910", "jean.dupont@example.com", 1, 1, 1 },
-                    { 2, "Durand", "Pierre", "0102030405", "0607080910", "pierre.durand@example.com", 2, 2, 2 },
-                    { 3, "Martin", "Sophie", "0102030405", "0607080910", "sophie.martin@example.com", 3, 3, 2 }
+                    { 1, "Dupont", "Jean", "0102030405", "0607080910", "jean.dupont@example.com", motDePasseHash, 1, 1, 1 },
+                    { 2, "Durand", "Pierre", "0102030405", "0607080910", "pierre.durand@example.com", motDePasseHash, 2, 2, 2 },
+                    { 3, "Martin", "Sophie", "0102030405", "0607080910", "sophie.martin@example.com", motDePasseHash, 3, 3, 2 }
                 });
         }
 

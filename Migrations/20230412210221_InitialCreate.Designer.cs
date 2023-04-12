@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DotNetAnnuaireApi.Migrations
 {
     [DbContext(typeof(AnnuaireContext))]
-    [Migration("20230406210244_DataSeeder")]
-    partial class DataSeeder
+    [Migration("20230412210221_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,10 @@ namespace DotNetAnnuaireApi.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("MotDePasse")
                         .IsRequired()
                         .HasColumnType("text");
 

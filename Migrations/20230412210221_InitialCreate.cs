@@ -61,6 +61,7 @@ namespace DotNetAnnuaireApi.Migrations
                     TelephoneFixe = table.Column<string>(type: "text", nullable: false),
                     TelephonePortable = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
+                    MotDePasse = table.Column<string>(type: "text", nullable: false),
                     ServiceId = table.Column<int>(type: "integer", nullable: false),
                     SiteId = table.Column<int>(type: "integer", nullable: false),
                     RoleId = table.Column<int>(type: "integer", nullable: false)
