@@ -33,6 +33,7 @@ builder.Services.AddScoped<ISiteService, SiteService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<ISalarieService, SalarieService>();
+builder.Services.AddScoped<IConnexionService, ConnexionService>();
 
 var app = builder.Build();
 
