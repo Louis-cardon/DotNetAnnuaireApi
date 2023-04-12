@@ -25,6 +25,7 @@ namespace DotNetAnnuaireApi.Services
 
         public async Task<Salarie> AddSalarieAsync(Salarie Salarie)
         {
+            Salarie.MotDePasse = BCrypt.Net.BCrypt.HashPassword(Salarie.MotDePasse);
             _context.Salaries.Add(Salarie);
             await _context.SaveChangesAsync();
             return Salarie;
@@ -32,6 +33,7 @@ namespace DotNetAnnuaireApi.Services
 
         public async Task UpdateSalarieAsync(Salarie Salarie)
         {
+            Salarie.MotDePasse = BCrypt.Net.BCrypt.HashPassword(Salarie.MotDePasse);
             _context.Salaries.Update(Salarie);
             await _context.SaveChangesAsync();
         }
