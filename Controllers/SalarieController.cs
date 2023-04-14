@@ -1,5 +1,6 @@
 ﻿using DotNetAnnuaireApi.Models;
 using DotNetAnnuaireApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetAnnuaireApi.Controllers
@@ -18,6 +19,7 @@ namespace DotNetAnnuaireApi.Controllers
 
         // GET: api/Salarie
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Salarie>>> GetSalaries()
         {
             var result = await _salarieService.GetAllSalariesAsync();
