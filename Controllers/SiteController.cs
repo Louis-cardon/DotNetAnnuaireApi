@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using DotNetAnnuaireApi.Models;
     using DotNetAnnuaireApi.Services;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
@@ -40,6 +41,7 @@
 
         // POST: api/sites
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Site>> PostSite([FromBody] Site site)
         {
             if (site == null)
@@ -53,6 +55,7 @@
 
         // PUT: api/sites/5
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutSite(int id, [FromBody] Site site)
         {
             if (site == null || id != site.Id)
@@ -72,6 +75,7 @@
 
         // DELETE: api/sites/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteSite(int id)
         {
             var site = await _siteService.GetSiteByIdAsync(id);

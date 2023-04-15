@@ -8,6 +8,7 @@ namespace DotNetAnnuaireApi.Controllers
 
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class SalarieController : ControllerBase
     {
         private readonly ISalarieService _salarieService;
@@ -19,7 +20,6 @@ namespace DotNetAnnuaireApi.Controllers
 
         // GET: api/Salarie
         [HttpGet]
-        [Authorize]
         public async Task<ActionResult<IEnumerable<Salarie>>> GetSalaries()
         {
             var result = await _salarieService.GetAllSalariesAsync();

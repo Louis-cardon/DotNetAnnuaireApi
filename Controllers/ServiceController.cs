@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using DotNetAnnuaireApi.Models;
     using DotNetAnnuaireApi.Services;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
 
@@ -38,6 +39,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Service>> PostService([FromBody] Service service)
         {
             if (service == null)
@@ -51,6 +53,7 @@
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutService(int id, [FromBody] Service service)
         {
             if (service == null || id != service.Id)
@@ -71,6 +74,7 @@
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteService(int id)
         {
             var service = await _serviceService.GetServiceByIdAsync(id);

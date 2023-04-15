@@ -54,6 +54,7 @@ builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<ISalarieService, SalarieService>();
 builder.Services.AddScoped<IConnexionService, ConnexionService>();
+builder.Services.AddScoped<IJwtAuthenticationService, JwtAuthenticationService>();
 
 var app = builder.Build();
 

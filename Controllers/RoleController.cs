@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using DotNetAnnuaireApi.Models;
     using DotNetAnnuaireApi.Services;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
@@ -35,6 +36,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Role>> PostRole([FromBody] Role role)
         {
             if (role == null)
@@ -47,6 +49,7 @@
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutRole(int id, [FromBody] Role role)
         {
             if (role == null || id != role.Id)
@@ -67,6 +70,7 @@
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteRole(int id)
         {
             var role = await _roleService.GetRoleByIdAsync(id);
