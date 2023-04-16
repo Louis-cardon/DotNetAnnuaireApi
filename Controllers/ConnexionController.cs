@@ -114,6 +114,7 @@ namespace DotNetAnnuaireApi.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.Role, user.Role?.Nom ?? "User")
                 };
                 var token = _jwtAuthenticationService.GenerateToken(_config["Jwt:Key"], claims);
                 return Ok(token);
