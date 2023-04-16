@@ -42,6 +42,7 @@ namespace DotNetAnnuaireApi.Controllers
 
         // POST: api/Salarie
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Salarie>> PostSalarie([FromBody] Salarie salarie)
         {
             if (salarie == null)
@@ -56,6 +57,7 @@ namespace DotNetAnnuaireApi.Controllers
 
         // PUT: api/Salarie/5
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateSalarie(int id, [FromBody] Salarie salarie)
         {
             if (salarie == null || id != salarie.Id)
@@ -84,6 +86,7 @@ namespace DotNetAnnuaireApi.Controllers
 
         // DELETE: api/Salarie/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteSalarie(int id)
         {
 
