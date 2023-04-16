@@ -41,7 +41,7 @@
 
         // POST: api/sites
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Administrateur")]
         public async Task<ActionResult<Site>> PostSite([FromBody] Site site)
         {
             if (site == null)
@@ -55,7 +55,7 @@
 
         // PUT: api/sites/5
         [HttpPut("{id}")]
-        [Authorize]
+        [Authorize(Roles = "Administrateur")]
         public async Task<IActionResult> PutSite(int id, [FromBody] Site site)
         {
             if (site == null || id != site.Id)
@@ -75,7 +75,7 @@
 
         // DELETE: api/sites/5
         [HttpDelete("{id}")]
-        [Authorize]
+        [Authorize(Roles = "Administrateur")]
         public async Task<IActionResult> DeleteSite(int id)
         {
             var site = await _siteService.GetSiteByIdAsync(id);

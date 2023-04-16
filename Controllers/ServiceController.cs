@@ -39,7 +39,7 @@
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Administrateur")]
         public async Task<ActionResult<Service>> PostService([FromBody] Service service)
         {
             if (service == null)
@@ -53,7 +53,7 @@
         }
 
         [HttpPut("{id}")]
-        [Authorize]
+        [Authorize(Roles = "Administrateur")]
         public async Task<IActionResult> PutService(int id, [FromBody] Service service)
         {
             if (service == null || id != service.Id)
@@ -74,7 +74,7 @@
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
+        [Authorize(Roles = "Administrateur")]
         public async Task<IActionResult> DeleteService(int id)
         {
             var service = await _serviceService.GetServiceByIdAsync(id);

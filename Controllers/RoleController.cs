@@ -36,7 +36,7 @@
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Administrateur")]
         public async Task<ActionResult<Role>> PostRole([FromBody] Role role)
         {
             if (role == null)
@@ -49,7 +49,7 @@
         }
 
         [HttpPut("{id}")]
-        [Authorize]
+        [Authorize(Roles = "Administrateur")]
         public async Task<IActionResult> PutRole(int id, [FromBody] Role role)
         {
             if (role == null || id != role.Id)
@@ -70,7 +70,7 @@
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
+        [Authorize(Roles = "Administrateur")]
         public async Task<IActionResult> DeleteRole(int id)
         {
             var role = await _roleService.GetRoleByIdAsync(id);
