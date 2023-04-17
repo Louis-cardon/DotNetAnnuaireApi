@@ -8,6 +8,6 @@ namespace DotNetAnnuaireApi.Models
         [Key]
         public int Id { get; set; } // identifiant unique du site
         public string Ville { get; set; } // ville du site
-        public ICollection<Salarie> Salaries { get; set; }
+        public ICollection<Salarie>? Salaries { get; set; }
     }
 }
