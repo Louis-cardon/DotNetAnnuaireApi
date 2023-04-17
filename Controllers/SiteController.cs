@@ -60,12 +60,6 @@
                 return BadRequest();
             }
 
-            var existingSite = await _siteService.GetSiteByIdAsync(id);
-
-            if (existingSite == null)
-            {
-                return NotFound();
-            }
             await _siteService.UpdateSiteAsync(site);
             return NoContent();
         }

@@ -31,8 +31,12 @@ namespace DotNetAnnuaireApi.Services
 
         public async Task UpdateRoleAsync(Role role)
         {
-            _context.Roles.Update(role);
-            await _context.SaveChangesAsync();
+            var elem = await _context.Roles.FindAsync(role.Id);
+            if (elem != null)
+            {
+                elem.Nom = role.Nom;
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task DeleteRoleAsync(int id)

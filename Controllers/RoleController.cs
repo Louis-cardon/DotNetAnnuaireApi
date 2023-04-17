@@ -54,13 +54,6 @@
                 return BadRequest();
             }
 
-            var existingRole = await _roleService.GetRoleByIdAsync(id);
-
-            if (existingRole == null)
-            {
-                return NotFound();
-            }
-
             await _roleService.UpdateRoleAsync(role);
 
             return NoContent();

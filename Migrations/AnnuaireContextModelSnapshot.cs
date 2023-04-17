@@ -35,7 +35,7 @@ namespace DotNetAnnuaireApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("DotNetAnnuaireApi.Models.Salarie", b =>
@@ -87,7 +87,7 @@ namespace DotNetAnnuaireApi.Migrations
 
                     b.HasIndex("SiteId");
 
-                    b.ToTable("Salaries");
+                    b.ToTable("Salaries", (string)null);
                 });
 
             modelBuilder.Entity("DotNetAnnuaireApi.Models.Service", b =>
@@ -104,7 +104,7 @@ namespace DotNetAnnuaireApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Services");
+                    b.ToTable("Services", (string)null);
                 });
 
             modelBuilder.Entity("DotNetAnnuaireApi.Models.Site", b =>
@@ -121,7 +121,7 @@ namespace DotNetAnnuaireApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sites");
+                    b.ToTable("Sites", (string)null);
                 });
 
             modelBuilder.Entity("DotNetAnnuaireApi.Models.Salarie", b =>

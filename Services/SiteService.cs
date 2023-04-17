@@ -1,5 +1,6 @@
 ﻿using DotNetAnnuaireApi.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace DotNetAnnuaireApi.Services
 {
@@ -32,8 +33,12 @@ namespace DotNetAnnuaireApi.Services
 
             public async Task UpdateSiteAsync(Site site)
             {
-                _context.Sites.Update(site);
-                await _context.SaveChangesAsync();
+                var elem = await _context.Sites.FindAsync(site.Id);
+                if (elem != null)
+                {
+                    elem.Ville = site.Ville;
+                    await _context.SaveChangesAsync();
+                }
             }
 
             public async Task DeleteSiteAsync(int id)

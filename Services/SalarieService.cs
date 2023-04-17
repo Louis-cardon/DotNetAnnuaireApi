@@ -33,9 +33,21 @@ namespace DotNetAnnuaireApi.Services
 
         public async Task UpdateSalarieAsync(Salarie Salarie)
         {
-            Salarie.MotDePasse = BCrypt.Net.BCrypt.HashPassword(Salarie.MotDePasse);
-            _context.Salaries.Update(Salarie);
-            await _context.SaveChangesAsync();
+            var elem = await _context.Salaries.FindAsync(Salarie.Id);
+            if (elem != null)
+            {
+                if (Salarie.MotDePasse != elem.MotDePasse)
+                {
+                    Salarie.MotDePasse = BCrypt.Net.BCrypt.HashPassword(Salarie.MotDePasse);
+                }
+                elem.Nom = Salarie.Nom;
+                elem.Prenom = Salarie.Prenom;
+                elem.TelephoneFixe = Salarie.TelephoneFixe;
+                elem.TelephonePortable = Salarie.TelephonePortable;
+                elem.Email = Salarie.Email;
+                elem.MotDePasse = Salarie.MotDePasse;
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task DeleteSalarieAsync(int id)

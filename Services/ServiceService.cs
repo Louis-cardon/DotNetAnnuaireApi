@@ -32,8 +32,12 @@ namespace DotNetAnnuaireApi.Services
 
         public async Task UpdateServiceAsync(Service service)
         {
-            _dbContext.Services.Update(service);
-            await _dbContext.SaveChangesAsync();
+            var elem = await _dbContext.Services.FindAsync(service.Id);
+            if (elem != null)
+            {
+                elem.Nom = service.Nom;
+                await _dbContext.SaveChangesAsync();
+            }
         }
 
         public async Task DeleteServiceAsync(int id)

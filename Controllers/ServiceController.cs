@@ -58,13 +58,6 @@
                 return BadRequest();
             }
 
-            var existingService = await _serviceService.GetServiceByIdAsync(id);
-
-            if (existingService == null)
-            {
-                return NotFound();
-            }
-
             await _serviceService.UpdateServiceAsync(service);
 
             return NoContent();

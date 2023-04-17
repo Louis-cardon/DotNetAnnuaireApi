@@ -63,13 +63,6 @@ namespace DotNetAnnuaireApi.Controllers
                 return BadRequest();
             }
 
-            var existingSalarie = await _salarieService.GetSalarieByIdAsync(id);
-
-            if (existingSalarie == null)
-            {
-                return NotFound();
-            }
-
             try
             {
                 await _salarieService.UpdateSalarieAsync(salarie);
