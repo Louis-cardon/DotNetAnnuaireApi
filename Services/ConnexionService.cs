@@ -14,7 +14,7 @@ namespace DotNetAnnuaireApi.Services
 
         public async Task<Salarie> ConnexionAsync(string email, string motDePasse)
         {
-            var salarie = await _context.Salaries.Where(s => s.Email == email).SingleOrDefaultAsync();
+            var salarie = await _context.Salaries.Where(s => s.Email == email).Include(s=> s.Role).SingleOrDefaultAsync();
 
             if (salarie == null)
             {

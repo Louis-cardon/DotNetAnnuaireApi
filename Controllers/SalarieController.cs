@@ -8,6 +8,7 @@ namespace DotNetAnnuaireApi.Controllers
 
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class SalarieController : ControllerBase
     {
         private readonly ISalarieService _salarieService;
@@ -19,7 +20,6 @@ namespace DotNetAnnuaireApi.Controllers
 
         // GET: api/Salarie
         [HttpGet]
-        [Authorize]
         public async Task<ActionResult<IEnumerable<Salarie>>> GetSalaries()
         {
             var result = await _salarieService.GetAllSalariesAsync();
@@ -42,6 +42,7 @@ namespace DotNetAnnuaireApi.Controllers
 
         // POST: api/Salarie
         [HttpPost]
+        [Authorize(Roles = "Administrateur")]
         public async Task<ActionResult<Salarie>> PostSalarie([FromBody] Salarie salarie)
         {
             if (salarie == null)
@@ -56,6 +57,7 @@ namespace DotNetAnnuaireApi.Controllers
 
         // PUT: api/Salarie/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Administrateur")]
         public async Task<IActionResult> UpdateSalarie(int id, [FromBody] Salarie salarie)
         {
             if (salarie == null || id != salarie.Id)
@@ -77,6 +79,7 @@ namespace DotNetAnnuaireApi.Controllers
 
         // DELETE: api/Salarie/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrateur")]
         public async Task<IActionResult> DeleteSalarie(int id)
         {
 
