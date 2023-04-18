@@ -105,7 +105,6 @@ namespace DotNetAnnuaireApi.Controllers
 
 
         [HttpPost]
-        [Route("login")]
         public async Task<IActionResult> Login([FromBody] ConnexionModel model)
         {
             var user = await _connexionService.ConnexionAsync(model.Email, model.MotDePasse);
