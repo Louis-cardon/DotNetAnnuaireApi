@@ -8,7 +8,6 @@ namespace DotNetAnnuaireApi.Controllers
 
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
     public class SalarieController : ControllerBase
     {
         private readonly ISalarieService _salarieService;
