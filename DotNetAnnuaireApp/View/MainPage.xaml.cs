@@ -11,4 +11,11 @@ public partial class MainPage : ContentPage
         BindingContext = viewModel;
     }
 
+    protected override void OnAppearing()
+    {
+        salariesCollection.ItemsSource = viewModel.Salaries;
+
+        base.OnAppearing();
+    }
+
 }

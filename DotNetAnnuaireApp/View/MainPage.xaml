@@ -1,10 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:DotNetAnnuaireApp.Models"
+             xmlns:viewmodel="clr-namespace:DotNetAnnuaireApp.ViewModel"
+             x:DataType="viewmodel:SalariesViewModel"
+             Title="{Binding Title}"
              x:Class="DotNetAnnuaireApp.View.MainPage">
 
-    <ScrollView>
-
-    </ScrollView>
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*,auto">
+        <RefreshView Grid.ColumnSpan="2" Command="{Binding GetSalariesCommand}" IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView x:Name="salariesCollection" BackgroundColor="Transparent" SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Salarie">
+                        <Grid Padding="5">
+                            <Frame HeightRequest="125" Padding="0">
+                                <Grid Padding="0" ColumnDefinitions="110,160,*">
+                                    <Image/>
+                                    <VerticalStackLayout Grid.Column="1" Padding="10" VerticalOptions="Center">
+                                        <Label Text="{Binding Nom}"/>
+                                        <Label Text="{Binding Prenom}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
 
 </ContentPage>
+ 
