@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace DotNetAnnuaireApp.ViewModel;
 
-public class SalariesViewModel : BaseViewModel
+public partial class SalariesViewModel : BaseViewModel
 {
     SalarieService salarieService;
 
     public ObservableCollection<Salarie> Salaries { get; set; } = new();
+
+    [ObservableProperty]
+    bool isRefreshing;
 
     public SalariesViewModel(SalarieService salarieService) 
     {
@@ -40,7 +43,7 @@ public class SalariesViewModel : BaseViewModel
             Debug.WriteLine(ex);
             await Shell.Current.DisplayAlert("Erreur", "Impossible de récupérer la liste des produits", "OK");
         }
-        finally { IsBusy = false; }
+        finally { IsBusy = false;IsRefreshing = false; }
     }
 
 }
