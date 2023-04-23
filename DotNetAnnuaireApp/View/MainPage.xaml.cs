@@ -2,22 +2,13 @@
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
+    SalariesViewModel viewModel;
 
-    public MainPage()
+    public MainPage(SalariesViewModel viewModel)
     {
         InitializeComponent();
+        this.viewModel = viewModel;
+        BindingContext = viewModel;
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
-    {
-        count++;
-
-        if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
-        else
-            CounterBtn.Text = $"Clicked {count} times";
-
-        SemanticScreenReader.Announce(CounterBtn.Text);
-    }
 }
