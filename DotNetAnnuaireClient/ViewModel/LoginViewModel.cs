@@ -73,7 +73,7 @@ namespace DotNetAnnuaireClient.ViewModel
         public LoginViewModel()
         {
             ModeCommun.client = new HttpClient();
-            ModeCommun.client.BaseAddress = new Uri("https://localhost:44301/api/");
+            ModeCommun.client.BaseAddress = new Uri("https://localhost:7004/api/");
             ModeCommun.client.DefaultRequestHeaders.Accept.Clear();
             ModeCommun.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             LoginCommand = new ViewModelCommand<object>(ExecuteLoginCommand, CanExecuteLoginCommand);
@@ -83,39 +83,36 @@ namespace DotNetAnnuaireClient.ViewModel
 
         private async void ConnectUser()
         {
-            //IntPtr passwordBSTR = IntPtr.Zero;
-            //try
-            //{
-            //    passwordBSTR = System.Runtime.InteropServices.Marshal.SecureStringToBSTR(Password);
-            //    login_User.Password = System.Runtime.InteropServices.Marshal.PtrToStringBSTR(passwordBSTR);
-            //}
-            //finally
-            //{
-            //    if (passwordBSTR != IntPtr.Zero)
-            //    {
-            //        System.Runtime.InteropServices.Marshal.ZeroFreeBSTR(passwordBSTR);
-            //    }
-            //}
-            //var response = await ModeCommun.client.PostAsJsonAsync("Login/DesktopLogin", login_User);
-            //var users = await response.Content.ReadAsStringAsync();
-            //if (response.StatusCode == System.Net.HttpStatusCode.OK)
-            //{
-            //    ModeCommun.CurrentUser = JsonConvert.DeserializeObject<UserViewModel>(users);
-            //    var responseToken = await ModeCommun.client.PostAsJsonAsync("Login", login_User);
-            //    var tokenJson = await responseToken.Content.ReadAsStringAsync();
-                
-            //    var token = JsonConvert.DeserializeObject<ResponseData>(tokenJson);
-            //    ModeCommun.client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token.value);
-                
+            //On récupére le mot de passe
+            IntPtr passwordBSTR = IntPtr.Zero;
+            try
+            {
+                passwordBSTR = System.Runtime.InteropServices.Marshal.SecureStringToBSTR(Password);
+                login_User.MotDePasse = System.Runtime.InteropServices.Marshal.PtrToStringBSTR(passwordBSTR);
+            }
+            finally
+            {
+                if (passwordBSTR != IntPtr.Zero)
+                {
+                    System.Runtime.InteropServices.Marshal.ZeroFreeBSTR(passwordBSTR);
+                }
+            }
+            var response = await ModeCommun.client.PostAsJsonAsync("Connexion", login_User);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var tokenJson = await response.Content.ReadAsStringAsync();
+
+                ModeCommun.client.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenJson);
+
                 IsViewVisible = false;
                 OnPropertyChanged(nameof(IsViewVisible));
-            //}
-            //else
-            //{
-            //    ErrorMessage = "Email or password incorrect";
-            //}
-
         }
+            else
+            {
+                ErrorMessage = "Email or password incorrect";
+            }
+
+}
 
         private void ExecuteRecoverPasswordCommand(object obj)
         {
