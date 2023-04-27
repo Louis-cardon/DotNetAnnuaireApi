@@ -13,6 +13,11 @@ namespace DotNetAnnuaireClient.ViewModel
     {
 
         public ICommand LoginCommand { get; }
+
+        public bool IsAdmin
+        {
+            get { return ModeCommun.IsAdmin; }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string propertyName)

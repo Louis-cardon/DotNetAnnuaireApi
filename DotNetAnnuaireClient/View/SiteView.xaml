@@ -25,7 +25,7 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding AddSiteCommand}" HorizontalAlignment="Left">
+            <Button Command="{Binding AddSiteCommand}" HorizontalAlignment="Left" Visibility="{Binding IsAdmin,Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
@@ -51,7 +51,7 @@
                     <DataGridTemplateColumn Header="Action" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Grid>
+                                <Grid Visibility="{Binding RelativeSource={RelativeSource AncestorType=DataGrid,AncestorLevel=1},Path=DataContext.IsAdmin,Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
