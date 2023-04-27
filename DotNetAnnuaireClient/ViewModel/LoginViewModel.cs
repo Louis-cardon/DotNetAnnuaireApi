@@ -101,7 +101,9 @@ namespace DotNetAnnuaireClient.ViewModel
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var tokenJson = await response.Content.ReadAsStringAsync();
-
+                var responseUser = await ModeCommun.client.PostAsJsonAsync("Connexion/User", login_User);
+                var users = await responseUser.Content.ReadAsStringAsync();
+                ModeCommun.CurrentUser = JsonConvert.DeserializeObject<Salarie>(users);
                 ModeCommun.client.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenJson);
 
                 IsViewVisible = false;
