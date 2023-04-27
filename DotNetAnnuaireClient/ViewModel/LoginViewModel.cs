@@ -104,6 +104,10 @@ namespace DotNetAnnuaireClient.ViewModel
                 var responseUser = await ModeCommun.client.PostAsJsonAsync("Connexion/User", login_User);
                 var users = await responseUser.Content.ReadAsStringAsync();
                 ModeCommun.CurrentUser = JsonConvert.DeserializeObject<Salarie>(users);
+                if (ModeCommun.CurrentUser.RoleId == 1)
+                {
+                    ModeCommun.IsAdmin = true;
+                }
                 ModeCommun.client.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenJson);
 
                 IsViewVisible = false;
