@@ -56,8 +56,7 @@ public class LoginViewModel : BaseViewModel
         get { return _isViewVisible; }
         set
         {
-            _isViewVisible = value;
-            OnPropertyChanged(nameof(IsViewVisible));
+            SetProperty(ref _isViewVisible, value);
         }
     }
 
@@ -84,7 +83,7 @@ public class LoginViewModel : BaseViewModel
         try
         {
             passwordBSTR = System.Runtime.InteropServices.Marshal.SecureStringToBSTR(Password);
-            login_User.Password = System.Runtime.InteropServices.Marshal.PtrToStringBSTR(passwordBSTR);
+            login_User.MotDePasse = System.Runtime.InteropServices.Marshal.PtrToStringBSTR(passwordBSTR);
         }
         finally
         {
@@ -94,15 +93,12 @@ public class LoginViewModel : BaseViewModel
             }
         }
         var response = await ModeCommun.client.PostAsJsonAsync("Connexion", login_User);
-        var users = await response.Content.ReadAsStringAsync();
         if (response.StatusCode == System.Net.HttpStatusCode.OK)
         {
-            ModeCommun.CurrentUser = JsonConvert.DeserializeObject<Salarie>(users);
-            var responseToken = await ModeCommun.client.PostAsJsonAsync("Login", login_User);
-            var tokenJson = await responseToken.Content.ReadAsStringAsync();
+            var tokenJson = await response.Content.ReadAsStringAsync();
 
-            var token = JsonConvert.DeserializeObject<ResponseData>(tokenJson);
-            ModeCommun.client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token.value);
+            //var token = JsonConvert.DeserializeObject<ResponseData>(tokenJson);
+            ModeCommun.client.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenJson);
 
             IsViewVisible = false;
             OnPropertyChanged(nameof(IsViewVisible));
@@ -146,5 +142,5 @@ public class ResponseData
 public class UserLogin
 {
     public string Email { get; set; }
-    public string Password { get; set; }
+    public string MotDePasse { get; set; }
 }

@@ -99,15 +99,16 @@ internal class MainWindowViewModel : BaseViewModel
     //        }
     //    }
     //}
-    //public MainWindowViewModel()
-    //{
-    //    ArticleListDataContext = new ArticleListViewModel();
-    //    CategoryListDataContext = new CategoryListViewModel();
-    //    UserListDataContext = new UserListViewModel();
-    //    GestionStockDataContext = new GestionStockViewModel();
-    //    ProviderListDataContext = new ProviderListViewModel();
-    //    OrderListDataContext = new OrderListViewModel();
-    //    ImageDataContext = new ImageListViewModel();
-    //    ProviderOrderListDataContext = new ProviderOrderListViewModel();
-    //}
+
+    public MainWindowViewModel()
+    {
+        //ArticleListDataContext = new ArticleListViewModel();
+        //CategoryListDataContext = new CategoryListViewModel();
+        //UserListDataContext = new UserListViewModel();
+        //GestionStockDataContext = new GestionStockViewModel();
+        //ProviderListDataContext = new ProviderListViewModel();
+        //OrderListDataContext = new OrderListViewModel();
+        //ImageDataContext = new ImageListViewModel();
+        //ProviderOrderListDataContext = new ProviderOrderListViewModel();
+    }
 }
