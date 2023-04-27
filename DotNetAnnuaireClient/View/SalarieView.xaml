@@ -78,6 +78,7 @@
                 <TextBox Margin="5" materialDesign:HintAssist.Hint="Prenom" materialDesign:HintAssist.IsFloating="True" Text="{Binding SelectSalarie.Prenom,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                 <TextBox Margin="5" materialDesign:HintAssist.Hint="Téléphone Portable" materialDesign:HintAssist.IsFloating="True" Text="{Binding SelectSalarie.TelephonePortable,UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox Margin="5" materialDesign:HintAssist.Hint="Téléphone Fixe" materialDesign:HintAssist.IsFloating="True" Text="{Binding SelectSalarie.TelephoneFixe,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Margin="5" materialDesign:HintAssist.Hint="Email" materialDesign:HintAssist.IsFloating="True" Text="{Binding SelectSalarie.Email,UpdateSourceTrigger=PropertyChanged}"/>
                 <!--<ComboBox Margin="5" materialDesign:HintAssist.Hint="Provider" materialDesign:HintAssist.IsFloating="True" ItemsSource="{Binding ProvidersList}" SelectedValue="{Binding SelectSalarie.ProviderId,UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id" DisplayMemberPath="Name"/>
                 <ComboBox Margin="5" materialDesign:HintAssist.Hint="Category" materialDesign:HintAssist.IsFloating="True" ItemsSource="{Binding CategoriesList}" SelectedValue="{Binding SelectSalarie.CategoryId,UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id" DisplayMemberPath="Name"/>-->
                 <Button Margin="5,20" Content="Save" Command="{Binding SaveSalarieCommand}"/>

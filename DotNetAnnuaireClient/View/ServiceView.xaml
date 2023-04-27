@@ -48,9 +48,6 @@
             <DataGrid IsReadOnly="True" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding ServicesList}" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
-                    <DataGridTextColumn Header="Prenom" Binding="{Binding Prenom}"/>
-                    <DataGridTextColumn Header="Téléphone Portable" Binding="{Binding TelephonePortable}"/>
-                    <DataGridTextColumn Header="Téléphone Fixe" Binding="{Binding TelephoneFixe}"/>
                     <DataGridTemplateColumn Header="Action" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -75,11 +72,6 @@
         <Grid Background="#f6f6f6" Grid.Column="1" Visibility="{Binding VisibilityMenu,Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Margin="10" Orientation="Vertical">
                 <TextBox Margin="5" materialDesign:HintAssist.Hint="Nom" materialDesign:HintAssist.IsFloating="True" Text="{Binding SelectService.Nom,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBox Margin="5" materialDesign:HintAssist.Hint="Prenom" materialDesign:HintAssist.IsFloating="True" Text="{Binding SelectService.Prenom,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
-                <TextBox Margin="5" materialDesign:HintAssist.Hint="Téléphone Portable" materialDesign:HintAssist.IsFloating="True" Text="{Binding SelectService.TelephonePortable,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBox Margin="5" materialDesign:HintAssist.Hint="Téléphone Fixe" materialDesign:HintAssist.IsFloating="True" Text="{Binding SelectService.TelephoneFixe,UpdateSourceTrigger=PropertyChanged}"/>
-                <!--<ComboBox Margin="5" materialDesign:HintAssist.Hint="Provider" materialDesign:HintAssist.IsFloating="True" ItemsSource="{Binding ProvidersList}" SelectedValue="{Binding SelectService.ProviderId,UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id" DisplayMemberPath="Name"/>
-                <ComboBox Margin="5" materialDesign:HintAssist.Hint="Category" materialDesign:HintAssist.IsFloating="True" ItemsSource="{Binding CategoriesList}" SelectedValue="{Binding SelectService.CategoryId,UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id" DisplayMemberPath="Name"/>-->
                 <Button Margin="5,20" Content="Save" Command="{Binding SaveServiceCommand}"/>
             </StackPanel>
         </Grid>
