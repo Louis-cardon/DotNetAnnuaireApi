@@ -14,5 +14,7 @@ namespace DotNetAnnuaireClient
         public static HttpClient client;
 
         public static Salarie CurrentUser;
+
+        public static bool IsAdmin;
     }
 }

@@ -65,6 +65,7 @@ namespace DotNetAnnuaireClient.ViewModel
         #endregion
 
         public ICommand LoginCommand { get; }
+        public ICommand NoLoginCommand { get; }
         public ICommand RecoverPasswordCommand { get; }
         public ICommand ShowPasswordCommand { get; }
         public ICommand RemenberPasswordCommand { get; }
@@ -76,6 +77,7 @@ namespace DotNetAnnuaireClient.ViewModel
             ModeCommun.client.DefaultRequestHeaders.Accept.Clear();
             ModeCommun.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             LoginCommand = new ViewModelCommand<object>(ExecuteLoginCommand, CanExecuteLoginCommand);
+            NoLoginCommand = new ViewModelCommand<object>(ExecuteNoLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand<object>(ExecuteRecoverPasswordCommand);
         }
 
@@ -133,6 +135,13 @@ namespace DotNetAnnuaireClient.ViewModel
         private void ExecuteLoginCommand(object obj)
         {
             ConnectUser();
+        }
+        
+        private void ExecuteNoLoginCommand(object obj)
+        {
+            ModeCommun.IsAdmin = false;
+            IsViewVisible = false;
+            OnPropertyChanged(nameof(IsViewVisible));
         }
     }
 
