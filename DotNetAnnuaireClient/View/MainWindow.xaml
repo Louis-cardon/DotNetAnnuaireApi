@@ -13,14 +13,14 @@
         <viewModel:MainWindowViewModel />
     </Window.DataContext>
     <Grid Background="#2E2E2E">
-        <!--<TabControl SelectedIndex="{Binding IndexTabItem,UpdateSourceTrigger=PropertyChanged}">
+        <TabControl SelectedIndex="{Binding IndexTabItem,UpdateSourceTrigger=PropertyChanged}">
             <TabItem>
                 <TabItem.Header>
                     <TextBlock Text="Articles" Foreground="White"/>
                 </TabItem.Header>
-                <local:ArticleListView DataContext="{Binding ArticleListDataContext}"/>
+                <local:SalarieView DataContext="{Binding SalarieDataContext}"/>
             </TabItem>
-            <TabItem>
+            <!--<TabItem>
                 <TabItem.Header>
                     <TextBlock Text="Categories" Foreground="White"/>
                 </TabItem.Header>
@@ -61,8 +61,8 @@
                     <TextBlock Text="Images" Foreground="White"/>
                 </TabItem.Header>
                 <local:ImageListView DataContext="{Binding ImageDataContext}"/>
-            </TabItem>
-        </TabControl>-->
+            </TabItem>-->
+        </TabControl>
 
     </Grid>
 </Window>

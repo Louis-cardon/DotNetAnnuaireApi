@@ -108,7 +108,8 @@ namespace DotNetAnnuaireClient.ViewModel
                 {
                     ModeCommun.IsAdmin = true;
                 }
-                ModeCommun.client.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenJson);
+                ModeCommun.client.DefaultRequestHeaders.Authorization =
+    new AuthenticationHeaderValue("Bearer", tokenJson.Replace("\"", ""));
 
                 IsViewVisible = false;
                 OnPropertyChanged(nameof(IsViewVisible));

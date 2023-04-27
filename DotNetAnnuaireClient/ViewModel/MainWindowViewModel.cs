@@ -15,14 +15,14 @@ namespace DotNetAnnuaireClient.ViewModel
 {
     internal class MainWindowViewModel : ViewModelBase
     {
-        
-        //private ArticleListViewModel _articleListDataContext;
-        //public ArticleListViewModel ArticleListDataContext
-        //{
-        //    get { return _articleListDataContext; }
-        //    set { SetProperty(ref _articleListDataContext , value); }
-        //}
-        
+
+        private SalarieViewModel _salarieDataContext;
+        public SalarieViewModel SalarieDataContext
+        {
+            get { return _salarieDataContext; }
+            set { SetProperty(ref _salarieDataContext, value); }
+        }
+
         //private ProviderListViewModel _providerListDataContext;
         //public ProviderListViewModel ProviderListDataContext
         //{
@@ -48,7 +48,7 @@ namespace DotNetAnnuaireClient.ViewModel
         //    get { return _gestionStockDataContext; }
         //    set { SetProperty(ref _gestionStockDataContext, value); }
         //}
-        
+
         //private ImageListViewModel _imageDataContext;
         //public ImageListViewModel ImageDataContext
         //{
@@ -107,7 +107,7 @@ namespace DotNetAnnuaireClient.ViewModel
         }
         public MainWindowViewModel()
         {  
-            //ArticleListDataContext = new ArticleListViewModel();
+            SalarieDataContext = new SalarieViewModel();
             //CategoryListDataContext = new CategoryListViewModel();
             //UserListDataContext = new UserListViewModel();
             //GestionStockDataContext = new GestionStockViewModel();
