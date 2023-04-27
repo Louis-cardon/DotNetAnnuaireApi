@@ -14,31 +14,32 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DotNetAnnuaireClient.CustomControls;
-
-/// <summary>
-/// Logique d'interaction pour BindablePasswordBox.xaml
-/// </summary>
-public partial class BindablePasswordBox : UserControl
+namespace DotNetAnnuaireClient.CustomControls
 {
-
-    public static readonly DependencyProperty PasswordProperty = DependencyProperty.Register("Password", typeof(SecureString), typeof(BindablePasswordBox));
-
-    public SecureString Password
+    /// <summary>
+    /// Logique d'interaction pour BindablePasswordBox.xaml
+    /// </summary>
+    public partial class BindablePasswordBox : UserControl
     {
-        get { return (SecureString)GetValue(PasswordProperty); }
-        set { SetValue(PasswordProperty, value); }
-    }
+
+        public static readonly DependencyProperty PasswordProperty = DependencyProperty.Register("Password",typeof(SecureString),typeof(BindablePasswordBox));
+
+        public SecureString Password
+        {
+            get { return(SecureString)GetValue(PasswordProperty); }
+            set { SetValue(PasswordProperty, value); }
+        }
 
 
-    public BindablePasswordBox()
-    {
-        InitializeComponent();
-        txtPassword.PasswordChanged += OnPasswordChanged;
-    }
+        public BindablePasswordBox()
+        {
+            InitializeComponent();
+            txtPassword.PasswordChanged += OnPasswordChanged;
+        }
 
-    private void OnPasswordChanged(object sender, RoutedEventArgs e)
-    {
-        Password = txtPassword.SecurePassword;
+        private void OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            Password = txtPassword.SecurePassword;
+        }
     }
 }

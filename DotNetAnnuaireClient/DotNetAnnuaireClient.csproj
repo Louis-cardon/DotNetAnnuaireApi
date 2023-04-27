@@ -8,14 +8,49 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MaterialDesignThemes" Version="4.8.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.7.1-ci136" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="View\MainWindow.xaml">
+    <Page Update="View\UserListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+    <Page Remove="obj\**" />
+    <Page Update="View\CategoryListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ProviderListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ImageListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="View\UserListView.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>UserListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Remove="obj\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="obj\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="obj\**" />
   </ItemGroup>
 
 </Project>

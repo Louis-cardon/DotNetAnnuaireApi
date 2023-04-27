@@ -3,14 +3,66 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DotNetAnnuaireClient"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
+        xmlns:local="clr-namespace:DotNetAnnuaireClient.View"
         mc:Ignorable="d"
         xmlns:viewModel="clr-namespace:DotNetAnnuaireClient.ViewModel"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Annuaire" Height="450" Width="800">
     <Window.DataContext>
         <viewModel:MainWindowViewModel />
     </Window.DataContext>
-    <Grid>
+    <Grid Background="#2E2E2E">
+        <!--<TabControl SelectedIndex="{Binding IndexTabItem,UpdateSourceTrigger=PropertyChanged}">
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Articles" Foreground="White"/>
+                </TabItem.Header>
+                <local:ArticleListView DataContext="{Binding ArticleListDataContext}"/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Categories" Foreground="White"/>
+                </TabItem.Header>
+                <local:CategoryListView DataContext="{Binding CategoryListDataContext}"/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Providers" Foreground="White"/>
+                </TabItem.Header>
+                <local:ProviderListView DataContext="{Binding ProviderListDataContext}"/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Users" Foreground="White"/>
+                </TabItem.Header>
+                <local:UserListView DataContext="{Binding UserListDataContext}"/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Order" Foreground="White"/>
+                </TabItem.Header>
+                <local:OrderListView DataContext="{Binding OrderListDataContext}"/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Provider Order" Foreground="White"/>
+                </TabItem.Header>
+                <local:ProviderOrderListView DataContext="{Binding ProviderOrderListDataContext}"/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Gestion stock" Foreground="White"/>
+                </TabItem.Header>
+                <local:GestionStockView DataContext="{Binding GestionStockDataContext}"/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Images" Foreground="White"/>
+                </TabItem.Header>
+                <local:ImageListView DataContext="{Binding ImageDataContext}"/>
+            </TabItem>
+        </TabControl>-->
 
     </Grid>
 </Window>

@@ -10,39 +10,39 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DotNetAnnuaireClient.View;
-
-/// <summary>
-/// Logique d'interaction pour LoginView.xaml
-/// </summary>
-public partial class LoginView : Window
+namespace DotNetAnnuaireClient.View
 {
-    public LoginView()
+    /// <summary>
+    /// Logique d'interaction pour LoginView.xaml
+    /// </summary>
+    public partial class LoginView : Window
     {
-        InitializeComponent();
-    }
+        public LoginView()
+        {
+            InitializeComponent();
+        }
 
-    private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-    {
-        if (e.LeftButton == MouseButtonState.Pressed)
-            DragMove();
-    }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
 
-    private void btnMinimize_Click(object sender, RoutedEventArgs e)
-    {
-        WindowState = WindowState.Minimized;
-    }
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
 
-    private void btnClose_Click(object sender, RoutedEventArgs e)
-    {
-        Application.Current.Shutdown();
-    }
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
 
-    private void btnLogin_Click(object sender, RoutedEventArgs e)
-    {
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }
