@@ -26,13 +26,13 @@
                 </TabItem.Header>
                 <local:ServiceView DataContext="{Binding ServiceDataContext}"/>
             </TabItem>
-            <!--<TabItem>
-                <TabItem.Header>
-                    <TextBlock Text="Providers" Foreground="White"/>
-                </TabItem.Header>
-                <local:ProviderListView DataContext="{Binding ProviderListDataContext}"/>
-            </TabItem>
             <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Site" Foreground="White"/>
+                </TabItem.Header>
+                <local:SiteView DataContext="{Binding SiteDataContext}"/>
+            </TabItem>
+            <!--<TabItem>
                 <TabItem.Header>
                     <TextBlock Text="Users" Foreground="White"/>
                 </TabItem.Header>

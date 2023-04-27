@@ -29,12 +29,14 @@ namespace DotNetAnnuaireClient.ViewModel
             get { return _serviceDataContext; }
             set { SetProperty(ref _serviceDataContext, value); }
         }
-        //private CategoryListViewModel _categoryListDataContext;
-        //public CategoryListViewModel CategoryListDataContext
-        //{
-        //    get { return _categoryListDataContext; }
-        //    set { SetProperty(ref _categoryListDataContext , value); }
-        //}
+
+        private SiteViewModel _siteDataContext;
+        public SiteViewModel SiteDataContext
+        {
+            get { return _siteDataContext; }
+            set { SetProperty(ref _siteDataContext, value); }
+        }
+
         //private UserListViewModel _userListDataContext;
         //public UserListViewModel UserListDataContext
         //{
@@ -84,9 +86,9 @@ namespace DotNetAnnuaireClient.ViewModel
                     case 1:
                         ServiceDataContext.ExecuteRefreshServiceCommand(null);
                         break;
-                    //case 2:
-                    //    ProviderListDataContext.ExecuteRefreshProviderCommand(null);
-                    //    break;
+                    case 2:
+                        SiteDataContext.ExecuteRefreshSiteCommand(null);
+                        break;
                     //case 3:
                     //    UserListDataContext.ExecuteRefreshUserCommand(null);
                     //    break;
@@ -109,7 +111,7 @@ namespace DotNetAnnuaireClient.ViewModel
         {  
             SalarieDataContext = new SalarieViewModel();
             ServiceDataContext = new ServiceViewModel();
-            //UserListDataContext = new UserListViewModel();
+            SiteDataContext = new SiteViewModel();
             //GestionStockDataContext = new GestionStockViewModel();
             //ProviderListDataContext = new ProviderListViewModel();
             //OrderListDataContext = new OrderListViewModel();
