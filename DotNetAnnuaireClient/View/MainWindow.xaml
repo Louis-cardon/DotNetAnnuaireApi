@@ -16,17 +16,17 @@
         <TabControl SelectedIndex="{Binding IndexTabItem,UpdateSourceTrigger=PropertyChanged}">
             <TabItem>
                 <TabItem.Header>
-                    <TextBlock Text="Articles" Foreground="White"/>
+                    <TextBlock Text="Salaries" Foreground="White"/>
                 </TabItem.Header>
                 <local:SalarieView DataContext="{Binding SalarieDataContext}"/>
             </TabItem>
-            <!--<TabItem>
-                <TabItem.Header>
-                    <TextBlock Text="Categories" Foreground="White"/>
-                </TabItem.Header>
-                <local:CategoryListView DataContext="{Binding CategoryListDataContext}"/>
-            </TabItem>
             <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Services" Foreground="White"/>
+                </TabItem.Header>
+                <local:ServiceView DataContext="{Binding ServiceDataContext}"/>
+            </TabItem>
+            <!--<TabItem>
                 <TabItem.Header>
                     <TextBlock Text="Providers" Foreground="White"/>
                 </TabItem.Header>

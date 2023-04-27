@@ -23,12 +23,12 @@ namespace DotNetAnnuaireClient.ViewModel
             set { SetProperty(ref _salarieDataContext, value); }
         }
 
-        //private ProviderListViewModel _providerListDataContext;
-        //public ProviderListViewModel ProviderListDataContext
-        //{
-        //    get { return _providerListDataContext; }
-        //    set { SetProperty(ref _providerListDataContext , value); }
-        //}
+        private ServiceViewModel _serviceDataContext;
+        public ServiceViewModel ServiceDataContext
+        {
+            get { return _serviceDataContext; }
+            set { SetProperty(ref _serviceDataContext, value); }
+        }
         //private CategoryListViewModel _categoryListDataContext;
         //public CategoryListViewModel CategoryListDataContext
         //{
@@ -76,39 +76,39 @@ namespace DotNetAnnuaireClient.ViewModel
             get { return _indexTabItem; }
             set { 
                 SetProperty (ref _indexTabItem , value);
-                //switch( _indexTabItem)
-                //{
-                //    case 0:
-                //        ArticleListDataContext.ExecuteRefreshArticleCommand(null);
-                //        break;
-                //    case 1:
-                //        CategoryListDataContext.ExecuteRefreshCategoryCommand(null);
-                //        break;
-                //    case 2:
-                //        ProviderListDataContext.ExecuteRefreshProviderCommand(null);
-                //        break;
-                //    case 3:
-                //        UserListDataContext.ExecuteRefreshUserCommand(null);
-                //        break;
-                //    case 4:
-                //        OrderListDataContext.ExecuteRefreshOrderCommand(null);
-                //        break;
-                //    case 5:
-                //        ProviderOrderListDataContext.ExecuteRefreshOrderCommand(null);
-                //        break;
-                //    case 6:
-                //        GestionStockDataContext.GetArticles();
-                //        break;
-                //    case 7:
-                //        ImageDataContext.ExecuteRefreshImageCommand(null);
-                //        break;
-                //}
+                switch (_indexTabItem)
+                {
+                    case 0:
+                        SalarieDataContext.ExecuteRefreshSalarieCommand(null);
+                        break;
+                    case 1:
+                        ServiceDataContext.ExecuteRefreshServiceCommand(null);
+                        break;
+                    //case 2:
+                    //    ProviderListDataContext.ExecuteRefreshProviderCommand(null);
+                    //    break;
+                    //case 3:
+                    //    UserListDataContext.ExecuteRefreshUserCommand(null);
+                    //    break;
+                    //case 4:
+                    //    OrderListDataContext.ExecuteRefreshOrderCommand(null);
+                    //    break;
+                    //case 5:
+                    //    ProviderOrderListDataContext.ExecuteRefreshOrderCommand(null);
+                    //    break;
+                    //case 6:
+                    //    GestionStockDataContext.GetArticles();
+                    //    break;
+                    //case 7:
+                    //    ImageDataContext.ExecuteRefreshImageCommand(null);
+                    //    break;
+                }
             }
         }
         public MainWindowViewModel()
         {  
             SalarieDataContext = new SalarieViewModel();
-            //CategoryListDataContext = new CategoryListViewModel();
+            ServiceDataContext = new ServiceViewModel();
             //UserListDataContext = new UserListViewModel();
             //GestionStockDataContext = new GestionStockViewModel();
             //ProviderListDataContext = new ProviderListViewModel();
