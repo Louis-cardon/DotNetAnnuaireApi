@@ -29,79 +29,6 @@ namespace DotNetAnnuaireApi.Controllers
             _config = config;
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Connexion([FromBody] ConnexionModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    try
-        //    {
-        //        var resultat = await _connexionService.ConnexionAsync(model.Email, model.MotDePasse);
-
-        //        if (resultat == null)
-        //        {
-        //            return BadRequest(new { message = "Email ou mot de passe incorrect" });
-        //        }
-
-        //        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
-        //        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-        //        var claims = new[]
-        //        {
-        //        new Claim(ClaimTypes.Email, resultat.Email)
-        //        };
-
-        //        var token = new JwtSecurityToken(_jwtSettings.Issuer,
-        //          _jwtSettings.Audience,
-        //          claims,
-        //          expires: DateTime.Now.AddMinutes(2500),
-        //          signingCredentials: credentials);
-
-        //        var tok = new JwtSecurityTokenHandler().WriteToken(token);
-        //        return Ok(tok);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(new { message = ex.Message });
-        //    }
-        //}
-
-        //[HttpGet("validate-token")]
-        //public IActionResult ValidateToken([FromQuery] string token)
-        //{
-        //    var tokenHandler = new JwtSecurityTokenHandler();
-        //    var key = Encoding.ASCII.GetBytes(_jwtSettings.Key);
-        //    var tokenValidationParameters = new TokenValidationParameters
-        //    {
-        //        ValidateIssuerSigningKey = true,
-        //        IssuerSigningKey = new SymmetricSecurityKey(key),
-        //        ValidateIssuer = false,
-        //        ValidateAudience = false,
-        //        ClockSkew = TimeSpan.Zero
-        //    };
-
-        //    try
-        //    {
-        //        tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken validatedToken);
-        //        return Ok(new { IsValid = true });
-        //    }
-        //    catch (Exception)
-        //    {
-        //        // Vous pouvez ajouter une journalisation des exceptions ici si nécessaire
-        //        return Ok(new { IsValid = true });
-        //    }
-        //    //if (ValidateJwtToken(token))
-        //    //{
-        //    //    return Ok(new { IsValid = true });
-        //    //}
-        //    //else
-        //    //{
-        //    //    return BadRequest(new { IsValid = false });
-        //    //}
-        //}
 
 
         [HttpPost]
@@ -117,6 +44,17 @@ namespace DotNetAnnuaireApi.Controllers
                 };
                 var token = _jwtAuthenticationService.GenerateToken(_config["Jwt:Key"], claims);
                 return Ok(token);
+            }
+            return Unauthorized();
+        }
+
+        [HttpPost("User")]
+        public async Task<ActionResult<Salarie>> LoginUser([FromBody] ConnexionModel model)
+        {
+            var user = await _connexionService.ConnexionAsync(model.Email, model.MotDePasse);
+            if (user != null)
+            {
+                return Ok(user);
             }
             return Unauthorized();
         }
