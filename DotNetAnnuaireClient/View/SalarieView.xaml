@@ -6,11 +6,15 @@
       xmlns:viewModel="clr-namespace:DotNetAnnuaireClient.ViewModel"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DotNetAnnuaireClient.View"
+      xmlns:localconvert="clr-namespace:DotNetAnnuaireClient.CustomControls"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <viewModel:SalarieViewModel/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <localconvert:SalarieRechercheConverter x:Key="convertsalarie" />
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -23,6 +27,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Command="{Binding AddSalarieCommand}" HorizontalAlignment="Left" Visibility="{Binding IsAdmin,Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -45,7 +50,20 @@
                     <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="Refresh"/>
                 </Grid>
             </Button>
+            <TextBox Grid.Column="2" x:Name="recherche"/>
             <DataGrid IsReadOnly="True" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding SalariesList}" AutoGenerateColumns="False">
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="Visibility">
+                            <Setter.Value>
+                                <MultiBinding Converter="{StaticResource convertsalarie}">
+                                    <Binding Path="" />
+                                    <Binding Path="Text" ElementName="recherche" />
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.RowStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
                     <DataGridTextColumn Header="Prenom" Binding="{Binding Prenom}"/>
