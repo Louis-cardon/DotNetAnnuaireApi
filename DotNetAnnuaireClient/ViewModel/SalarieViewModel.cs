@@ -16,6 +16,7 @@ namespace DotNetAnnuaireClient.ViewModel
         private ObservableCollection<Salarie> _salariesList;
         private ObservableCollection<Site> _sitesList;
         private ObservableCollection<Service> _servicesList;
+        private ObservableCollection<Role> _rolesList;
 
         private bool _visibilityMenu;
         private Salarie _selectSalarie;
@@ -38,6 +39,12 @@ namespace DotNetAnnuaireClient.ViewModel
         {
             get { return _servicesList; }
             set { SetProperty(ref _servicesList, value); }
+        }
+        
+        public ObservableCollection<Role> RolesList
+        {
+            get { return _rolesList; }
+            set { SetProperty(ref _rolesList, value); }
         }
 
         public bool VisibilityMenu
@@ -69,6 +76,7 @@ namespace DotNetAnnuaireClient.ViewModel
             GetSalaries();
             GetSites();
             GetServices();
+            GetRoles();
         }
 
 
@@ -95,6 +103,14 @@ namespace DotNetAnnuaireClient.ViewModel
             ServicesList = new ObservableCollection<Service>();
             var content = await ModeCommun.client.GetStringAsync("Service");
             ServicesList = new ObservableCollection<Service>(JsonConvert.DeserializeObject<List<Service>>(content));
+
+        }
+
+        private async void GetRoles()
+        {
+            RolesList = new ObservableCollection<Role>();
+            var content = await ModeCommun.client.GetStringAsync("Role");
+            RolesList = new ObservableCollection<Role>(JsonConvert.DeserializeObject<List<Role>>(content));
 
         }
         #endregion
@@ -202,6 +218,7 @@ namespace DotNetAnnuaireClient.ViewModel
             GetSalaries();
             GetSites();
             GetServices();
+            GetRoles();
         }
 
         #endregion
