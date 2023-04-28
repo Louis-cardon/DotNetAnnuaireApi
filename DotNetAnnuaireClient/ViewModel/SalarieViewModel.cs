@@ -151,7 +151,7 @@ namespace DotNetAnnuaireClient.ViewModel
             if (SelectSalarie.Id == 0)
             {
                 var response = await ModeCommun.client.PostAsJsonAsync("salarie", SelectSalarie);
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                if (response.StatusCode == System.Net.HttpStatusCode.Created)
                 {
                     GetSalaries();
                     VisibilityMenu = false;
