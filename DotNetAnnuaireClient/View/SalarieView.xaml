@@ -82,8 +82,8 @@
                 <TextBox Margin="5" IsHitTestVisible="{Binding IsAdmin}"  materialDesign:HintAssist.Hint="Téléphone Portable" materialDesign:HintAssist.IsFloating="True" Text="{Binding SelectSalarie.TelephonePortable,UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox Margin="5" IsHitTestVisible="{Binding IsAdmin}"  materialDesign:HintAssist.Hint="Téléphone Fixe" materialDesign:HintAssist.IsFloating="True" Text="{Binding SelectSalarie.TelephoneFixe,UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox Margin="5" IsHitTestVisible="{Binding IsAdmin}" materialDesign:HintAssist.Hint="Email" materialDesign:HintAssist.IsFloating="True" Text="{Binding SelectSalarie.Email,UpdateSourceTrigger=PropertyChanged}"/>
-                <!--<ComboBox Margin="5" materialDesign:HintAssist.Hint="Provider" materialDesign:HintAssist.IsFloating="True" ItemsSource="{Binding ProvidersList}" SelectedValue="{Binding SelectSalarie.ProviderId,UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id" DisplayMemberPath="Name"/>
-                <ComboBox Margin="5" materialDesign:HintAssist.Hint="Category" materialDesign:HintAssist.IsFloating="True" ItemsSource="{Binding CategoriesList}" SelectedValue="{Binding SelectSalarie.CategoryId,UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id" DisplayMemberPath="Name"/>-->
+                <ComboBox Margin="5" materialDesign:HintAssist.Hint="Provider" materialDesign:HintAssist.IsFloating="True" ItemsSource="{Binding SitesList}" SelectedValue="{Binding SelectSalarie.SiteId,UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id" DisplayMemberPath="Ville"/>
+                <ComboBox Margin="5" materialDesign:HintAssist.Hint="Category" materialDesign:HintAssist.IsFloating="True" ItemsSource="{Binding ServicesList}" SelectedValue="{Binding SelectSalarie.ServiceId,UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id" DisplayMemberPath="Name"/>
                 <Button Visibility="{Binding IsAdmin,Converter={StaticResource BooleanToVisibilityConverter}}" Margin="5,20" Content="Save" Command="{Binding SaveSalarieCommand}"/>
             </StackPanel>
         </Grid>

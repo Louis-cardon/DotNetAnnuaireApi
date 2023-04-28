@@ -14,6 +14,8 @@ namespace DotNetAnnuaireClient.ViewModel
     internal class SalarieViewModel : ViewModelBase
     {
         private ObservableCollection<Salarie> _salariesList;
+        private ObservableCollection<Site> _sitesList;
+        private ObservableCollection<Service> _servicesList;
 
         private bool _visibilityMenu;
         private Salarie _selectSalarie;
@@ -24,6 +26,18 @@ namespace DotNetAnnuaireClient.ViewModel
         {
             get { return _salariesList; }
             set { SetProperty(ref _salariesList, value); }
+        }
+        
+        public ObservableCollection<Site> SitesList
+        {
+            get { return _sitesList; }
+            set { SetProperty(ref _sitesList, value); }
+        }
+        
+        public ObservableCollection<Service> ServicesList
+        {
+            get { return _servicesList; }
+            set { SetProperty(ref _servicesList, value); }
         }
 
         public bool VisibilityMenu
@@ -53,6 +67,8 @@ namespace DotNetAnnuaireClient.ViewModel
 
             RefreshSalarie = new ViewModelCommand<object>(ExecuteRefreshSalarieCommand);
             GetSalaries();
+            GetSites();
+            GetServices();
         }
 
 
@@ -66,7 +82,21 @@ namespace DotNetAnnuaireClient.ViewModel
 
         }
 
+        private async void GetSites()
+        {
+            SitesList = new ObservableCollection<Site>();
+            var content = await ModeCommun.client.GetStringAsync("Site");
+            SitesList = new ObservableCollection<Site>(JsonConvert.DeserializeObject<List<Site>>(content));
 
+        }
+
+        private async void GetServices()
+        {
+            ServicesList = new ObservableCollection<Service>();
+            var content = await ModeCommun.client.GetStringAsync("Service");
+            ServicesList = new ObservableCollection<Service>(JsonConvert.DeserializeObject<List<Service>>(content));
+
+        }
         #endregion
 
 
@@ -166,9 +196,12 @@ namespace DotNetAnnuaireClient.ViewModel
         }
 
         public ICommand RefreshSalarie { get; }
+
         public async void ExecuteRefreshSalarieCommand(object obj)
         {
             GetSalaries();
+            GetSites();
+            GetServices();
         }
 
         #endregion
