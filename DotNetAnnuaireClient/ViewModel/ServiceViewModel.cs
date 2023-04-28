@@ -86,8 +86,15 @@ namespace DotNetAnnuaireClient.ViewModel
             SelectService = obj;
             if (MessageBox.Show("Are you sure you want to delete this service?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
             {
-                var response = await ModeCommun.client.DeleteAsync("Service/" + SelectService.Id);
-                ServicesList.Remove(SelectService);
+                var listSal = new ObservableCollection<Salarie>();
+                var content = await ModeCommun.client.GetStringAsync("Salarie/service/" + SelectService.Id);
+                listSal = new ObservableCollection<Salarie>(JsonConvert.DeserializeObject<List<Salarie>>(content));
+                if (listSal.Count == 0)
+                {
+                    var response = await ModeCommun.client.DeleteAsync("Service/" + SelectService.Id);
+                    ServicesList.Remove(SelectService);
+                    GetServices();
+                }
             }
         }
 
