@@ -105,7 +105,7 @@ namespace DotNetAnnuaireClient.ViewModel
             if (SelectService.Id == 0)
             {
                 var response = await ModeCommun.client.PostAsJsonAsync("Service", SelectService);
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                if (response.StatusCode == System.Net.HttpStatusCode.Created)
                 {
                     GetServices();
                     VisibilityMenu = false;
